@@ -47,3 +47,89 @@
 </body>
 </html>
 ```
+
+
+
+```
+<script type="text/javascript">
+  var drawing = false;
+  var ctx;
+
+  window.onload=function(){
+    document.getElementById('btnClear').addEventListener('click',function(){
+      ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+    },false);
+
+      ctx.strokeStyle="#000";
+      ctx.lineJoin="round";
+      ctx.lineWidth=5;
+
+    }
+    function myClickEvent(e) {
+    var message;
+    ctx.beginPath();
+    if (shape == 0){
+        ctx.arc(e.offsetX, e.offsetY, 50, 0, 2 * Math.PI);
+           
+    }else if (shape==1){
+        ctx.rect(e.offsetX, e.offsetY, 100, 100);
+        
+    }else if (shape == 2){
+        ctx.strokeRect(e.offsetX,e.offsetY,150,100);
+    
+    }else if (shape == 3){
+      ctx.moveTo(e.offsetX, e.offsetY);
+          ctx.lineTo(e.offsetX-(100/2),e.offsetY-(100*0.86602));
+          ctx.lineTo(e.offsetX+(100/2),e.offsetY-(100*0.86602));
+          ctx.lineTo(e.offsetX,e.offsetY)
+    }
+    else if (shape == 4){
+      ctx.moveTo(e.offsetX, e.offsetY);
+      ctx.lineTo(e.offsetX+(100/2),e.offsetY+(100*0.86602));
+      
+      
+    }
+
+  ctx.stroke();
+  }
+
+
+
+function circleclicked() {
+    shape=0;
+}
+function squareclicked() {
+    shape=1;
+}
+</script>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Drawing application</h1>
+            <canvas 
+            id="myCanvas"
+            width="1315"
+            height="600"
+            style="border:1px solid #000000"></canvas>
+            <div class="toolbar">
+                <input type="button" id="circle" value="Circle"/>
+                <input type="button" id="square" value="Square"/>
+                <button id="btnClear">Clear</button><br>
+    </div>
+    </div>
+    </div>
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+shape=0;
+
+c.addEventListener("click",myClickEvent);
+document
+.getElementById("circle")
+.addEventListener("click",circleclicked);
+document
+.getElementById("square")
+.addEventListener("click",squareclicked);
+</script>
+</body>
+```
